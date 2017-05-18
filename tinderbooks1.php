@@ -25,7 +25,7 @@
   </div>
 </nav>
 
-	<div class="header container-fluid">
+	<div class="header container-fluid link">
 		<h1><a href="file:///Users/alunomanha/Desktop/MiguelSerraninho/aula8/tinderbooks1.html">TinderBook<a></h1>	
 	</div>
 	

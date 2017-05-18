@@ -101,3 +101,7 @@ button{
 	background-color: rgb(209, 240, 149); 
 
 }
+
+.link a: visited {
+	color: green;
+};
