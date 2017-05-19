@@ -52,9 +52,6 @@ p{
 img{
 	width: 300px;
 	height: 500px;
-
-
-
 }
 
 button{
@@ -62,9 +59,10 @@ button{
 	height:30px;
 	background-color: black;
 	color: white;
-	
+	border-radius: 15px;
 }
-.alignleft {
+
+/*.alignleft {
 	float:left;
 }
 .alignright {
@@ -72,8 +70,7 @@ button{
 }
 .fixfloat{
 	clear:both;
-	
-}
+}*/
 
 #resultslike, #resultsdislike {
 	color: rgb(216, 30, 35);
@@ -98,10 +95,22 @@ button{
 }
 
 #bookContainer {
-	background-color: rgb(209, 240, 149); 
+	/*background-image: url("bib_mafra4.jpg");*/
 
+	background: url("bib_mafra4.jpg") no-repeat fixed center;
 }
 
 .link a: visited {
 	color: green;
-};
+}
+
+.buttons {
+	background-color: rgb(255, 155, 17); 
+	align-items:center;
+}
+
+footer{
+	background-color: rgb(240, 200, 82);
+} 
+
+

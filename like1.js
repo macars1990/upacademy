@@ -194,10 +194,16 @@ $("#date").text(Date());
 
 $("#restartButton").click(function(){
 	$("#endPage").hide();
-	$("#bookContainer").show();
+	$("#bookContainer, .buttons").show();
 	countlike = 0;
 	countdislike = 0;
 });
+
+$("#gotoresults").click(function(){
+		$("#bookContainer, .buttons").hide();
+		$("#endPage").show();
+	});
+
 
 
 // var APIKey = "AIzaSyC58lzBBAG5VWEGSRCXRpLWkasXTkvESzM";
