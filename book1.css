@@ -34,6 +34,7 @@ p{
 	/*margin-right: auto;*/
 	justify-content: space-around;
 	background-color: rgb(236,255,255);
+	/*background-image: url("background1.jpg");*/
 	display: none;	
 }
 
@@ -98,6 +99,7 @@ button{
 }
 
 #bookContainer {
-	background-color: rgb(209, 240, 149); 
+	/*background-color: rgb(209, 240, 149);*/ 
+	background-image: url("biblioteca.jpeg");
 
 }
