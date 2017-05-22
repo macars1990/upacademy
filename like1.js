@@ -131,7 +131,7 @@ function LoadDataWithHTML (book){
 		$opinion = $(this).attr('data-opinion');
 
 		db.transaction(function (tx) {
-			tx.executeSql('INSERT INTO books(id, opinion) VALUES("' + $id + '","' + $opinion + '")');
+			tx.executeSql('INSERT INTO books(id, opinion) VALUES(?,?)', [$id, $opinion]);
 			});
 
 		$book.fadeOut(300,function(){
