@@ -26,10 +26,22 @@
 
 // loadbooks();
 
+var db = openDatabase('mydb', '1.0', 'Test DB', 2 * 1024 * 1024);
+db.transaction(function (tx) {
+	tx.executeSql('CREATE TABLE IF NOT EXISTS books (id unique, opinion)');
+ });
+
+
+var APIKey = "AIzaSyC58lzBBAG5VWEGSRCXRpLWkasXTkvESzM";
+var UserID = "101835032051663434460";
+var ShelfID = "1001";
+
+
 function LoadDataWithHTML (book){
 	
 	var HTMLtoInsert =
 	`<div class="book col-sm-4 col-sm-offset-4">
+	<input type="hidden" class="hiddenFieldId"></input>
 	<img class="center-block image">
 	<h1></h1>
 	<p class="price"></p>
@@ -58,6 +70,8 @@ function LoadDataWithHTML (book){
 	$(".description", $bookHTML).text(book.volumeInfo.description);
 	$(".image", $bookHTML).attr("src", book.volumeInfo.imageLinks.thumbnail);
 
+	$('.hiddenFieldId',$bookHTML).text(book.id);
+
 
 
 		// $allBooks = $(".book");
@@ -77,9 +91,9 @@ function LoadDataWithHTML (book){
 	}
 
 
-	var APIKey = "AIzaSyC58lzBBAG5VWEGSRCXRpLWkasXTkvESzM";
-	var UserID = "101835032051663434460";
-	var ShelfID = "1001";
+	// var APIKey = "AIzaSyC58lzBBAG5VWEGSRCXRpLWkasXTkvESzM";
+	// var UserID = "101835032051663434460";
+	// var ShelfID = "1001";
 
 	$.ajax({
 		url:"https://www.googleapis.com/books/v1/users/" + UserID + "/bookshelves/" + ShelfID + "/volumes?key=" + APIKey,
@@ -109,9 +123,16 @@ function LoadDataWithHTML (book){
 
 		if( $allBooks.index($book) == $allBooks.length-1){
 			$next = $allBooks.eq(0);
-			$("#bookContainer, #like, #dislike").hide();
+			$("#bookContainer, #like, #dislike, #gotoresults, .buttons").hide();
 			$("#endPage").show();
 		}
+
+		$id = $('.hiddenFieldId',$book).text();
+		$opinion = $(this).attr('data-opinion');
+
+		db.transaction(function (tx) {
+			tx.executeSql('INSERT INTO books(id, opinion) VALUES("' + $id + '","' + $opinion + '")');
+			});
 
 		$book.fadeOut(300,function(){
 
@@ -126,9 +147,19 @@ function LoadDataWithHTML (book){
 
 	});
 
+	$('#consultDb').click(function(){
+	db.transaction(function (tx) {
+		tx.executeSql('SELECT * FROM books', [], function (tx, results) {
+	   		$.each(results.rows,function(index,item){
+				console.log(item);
+			});
+		}, null);
+	});
+});
+
 	$("#restartButton").click(function(){
 		$("#endPage").hide();
-		$("#bookContainer,#like, #dislike").show();
+		$("#bookContainer,#like, #dislike, #gotoresults").show();
 	});
 
 	// $book1 = $(".book").eq(0);
@@ -194,10 +225,15 @@ $("#date").text(Date());
 
 $("#restartButton").click(function(){
 	$("#endPage").hide();
-	$("#bookContainer").show();
+	$("#bookContainer, .buttons").show();
 	countlike = 0;
 	countdislike = 0;
 });
+
+$("#gotoresults").click(function(){
+		$("#endPage").show();
+		$("#bookContainer, #like, #dislike, #gotoresults, .buttons").hide();
+	});
 
 
 // var APIKey = "AIzaSyC58lzBBAG5VWEGSRCXRpLWkasXTkvESzM";

@@ -84,10 +84,12 @@
 		</div>
 
 		<div class="row"> 
+		
 		<div class="buttons col-sm-4 col-sm-offset-4">
 			<br>
-			<button id="dislike" class="alignleft" type="button";">Não Gosto</button>
-			<button id="like" class="alignright" type="button";">Gosto</button>
+			<button data-opinion="dislike" id="dislike" class="alignleft" type="button";">Não Gosto</button>
+			<button data-opinion="like" id="like" class="alignright" type="button";">Gosto</button>
+			<br>
 			<br>
 			<button id="gotoresults" class="center" type="button";>Resultados Finais</button>
 		</div>
@@ -101,6 +103,7 @@
 			<p id="resultsdislike"></p>
 			<div style="margin: auto; text-align: center">
 			<button id="restartButton" type="button">FirstBook</button>
+			<button id="consultDb" type="button">Consultar Database</button>
 			</div>
 	</div>
 
@@ -110,9 +113,8 @@
 
 	<footer class="container-fluid">
 		<br>
-		<br>
-		<p style="text-align: center;" id="date"></p>
-		<p style="text-align: center;">Elaborado por: MiguelAlb.</p>	
+		<p style="text-align: center; color: blue;" id="date"></p>
+		<p style="text-align: center; color: blue;">Elaborado por: MiguelAlb.</p>	
 	</footer>
 			
 
