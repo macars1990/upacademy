@@ -90,6 +90,45 @@ function LoadDataWithHTML (book){
 
 	}
 
+	function LoadDataWithHTML1 (paginafinal){
+	
+	var HTMLtoInsert1 = 
+			`<div class="paginafinal">
+			<h1 style="text-align:center;">Resultados <br>
+			<button class="results" type="button";>R</button>
+			</h1>
+			<p id="resultslike"></p>
+			<p id="resultsdislike"></p>
+			<div style="margin: auto; text-align: center">
+			<button id="restartButton" type="button">FirstBook</button>
+			<button id="consultDb" type="button">Consultar Database</button>
+			<p class="titulolivro"></p>
+			<p></p>
+			<p></p>
+			</div>
+		</div>`;
+
+	$("#endPage").append(HTMLtoInsert1);
+	$bookHTML1 = $(".paginafinal");
+
+	$(".titulolivro", $bookHTML1).text(book.volumeInfo.title);
+	
+	// if (book.saleInfo.saleability == "NOT_FOR_SALE"){
+	// 	$(".price", $bookHTML).text("Não está para venda neste momento.")
+	// }
+	// else {$(".price", $bookHTML).text(book.saleInfo.listPrice.amount)};
+
+	
+	// $(".description", $bookHTML).text(book.volumeInfo.description);
+	// $(".image", $bookHTML).attr("src", book.volumeInfo.imageLinks.thumbnail);
+
+	// $('.hiddenFieldId',$bookHTML).text(book.id);
+
+	}
+
+ 	
+
+
 
 	// var APIKey = "AIzaSyC58lzBBAG5VWEGSRCXRpLWkasXTkvESzM";
 	// var UserID = "101835032051663434460";
