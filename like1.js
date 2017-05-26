@@ -196,6 +196,58 @@ function LoadDataWithHTML (book){
 	});
 });
 
+var typing = false;
+var current = null;
+var currentIndex = 0;
+
+$('#tbSearch, #tbFilter').keyup(function(event){
+	if(event.which == 13){
+		clearTimeout(current);
+		autoSearch();
+	}
+	else if(!typing){
+		typing = true;
+		current = setTimeout( function(){ autoSearch(); }, 2000);		
+	}
+	else{
+		clearTimeout(current);
+		current = setTimeout( function(){ autoSearch(); }, 2000);	
+	}
+});
+
+function autoSearch(){
+	typing = false;
+	currentIndex = 0;
+	getData();
+	
+}
+
+function getData(){
+	var searchText = $('#tbSearch').val();
+	if(searchText == "") return;
+	var filter = $('#ddlFilter option:selected').text();
+	var filterText = $('#tbFilter').val();
+	var query = "";
+	if(filterText != ""){			
+		switch(filter){
+			case 'Title':
+				query = "+intitle:" + filterText;
+				break;
+			case 'Author':
+				query = "+inauthor:" + filterText;
+				break;
+			case 'Publisher':
+				query = "+inpublisher:" + filterText;
+				break;
+			case 'Subject':
+				query = "+subject:" + filterText;
+				break;
+			case 'ISBN':
+				query = "+isbn:" + filterText;
+				break;
+		}
+	}
+
 	$("#restartButton").click(function(){
 		$("#endPage").hide();
 		$("#bookContainer,#like, #dislike, #gotoresults").show();
